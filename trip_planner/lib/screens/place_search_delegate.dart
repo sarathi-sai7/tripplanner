@@ -46,8 +46,8 @@ class PlaceSearchDelegate extends SearchDelegate<String> {
             child: IconButton(
               icon: Container(
                 padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF0F0F5),
+                decoration: const BoxDecoration(
+                  color: Color(0xFFF0F0F5),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(Icons.close, size: 16, color: Color(0xFF666680)),
@@ -131,8 +131,8 @@ class _EmptySearchState extends StatelessWidget {
                 Container(
                   width: 80,
                   height: 80,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF0F4FF),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFF0F4FF),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(Icons.travel_explore,
@@ -258,16 +258,16 @@ class _StatCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.07),
+          color: color.withValues(alpha: 0.07),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: color.withOpacity(0.15)),
+          border: Border.all(color: color.withValues(alpha: 0.15)),
         ),
         child: Row(
           children: [
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.12),
+                color: color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(icon, size: 18, color: color),
@@ -483,8 +483,8 @@ class _PlaceCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: isSelected
-                ? const Color(0xFF4F5BD5).withOpacity(0.12)
-                : Colors.black.withOpacity(0.04),
+                ? const Color(0xFF4F5BD5).withValues(alpha: 0.12)
+                : Colors.black.withValues(alpha: 0.04),
             blurRadius: isSelected ? 12 : 6,
             offset: const Offset(0, 2),
           ),
@@ -588,9 +588,9 @@ class _PlaceCard extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Details →',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 12,
                               color: Color(0xFF4F5BD5),
                               fontWeight: FontWeight.w600,
@@ -634,7 +634,7 @@ class _BuildTripButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF4F5BD5).withOpacity(0.4),
+              color: const Color(0xFF4F5BD5).withValues(alpha: 0.4),
               blurRadius: 16,
               offset: const Offset(0, 6),
             ),
@@ -647,7 +647,7 @@ class _BuildTripButton extends StatelessWidget {
               width: 26,
               height: 26,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Center(
@@ -823,7 +823,7 @@ class _InfoRow extends StatelessWidget {
           width: 36,
           height: 36,
           decoration: BoxDecoration(
-            color: iconColor.withOpacity(0.1),
+            color: iconColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Icon(icon, size: 18, color: iconColor),
@@ -877,8 +877,8 @@ class _NoResults extends StatelessWidget {
             Container(
               width: 80,
               height: 80,
-              decoration: BoxDecoration(
-                color: const Color(0xFFF5F6FF),
+              decoration: const BoxDecoration(
+                color: Color(0xFFF5F6FF),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.search_off_rounded,

@@ -23,11 +23,11 @@ static const textSec   = Color(0xFF64748B);
 static const textMuted = Color(0xFF94A3B8);
 
   // Tab accent palette
-  static const List<_TabMeta> tabs = [
-    _TabMeta('Train', Icons.train_rounded,            Color(0xFF6C63FF), Color(0xFF9D97FF)),
-    _TabMeta('Bus',   Icons.directions_bus_rounded,   Color(0xFFFF5C7A), Color(0xFFFF8FA3)),
-    _TabMeta('Cab',   Icons.local_taxi_rounded,       Color(0xFF00C9A7), Color(0xFF00ECC5)),
-    _TabMeta('Bike',  Icons.electric_moped_rounded,   Color(0xFFFFB400), Color(0xFFFFD260)),
+  static const List<TabMeta> tabs = [
+    TabMeta('Train', Icons.train_rounded,            Color(0xFF6C63FF), Color(0xFF9D97FF)),
+    TabMeta('Bus',   Icons.directions_bus_rounded,   Color(0xFFFF5C7A), Color(0xFFFF8FA3)),
+    TabMeta('Cab',   Icons.local_taxi_rounded,       Color(0xFF00C9A7), Color(0xFF00ECC5)),
+    TabMeta('Bike',  Icons.electric_moped_rounded,   Color(0xFFFFB400), Color(0xFFFFD260)),
   ];
 
   static const cardShadow = [
@@ -41,12 +41,12 @@ static const textMuted = Color(0xFF94A3B8);
       );
 }
 
-class _TabMeta {
+class TabMeta {
   final String label;
   final IconData icon;
   final Color color;
   final Color light;
-  const _TabMeta(this.label, this.icon, this.color, this.light);
+  const TabMeta(this.label, this.icon, this.color, this.light);
 }
 
 // ─── BookingScreen ────────────────────────────────────────────────────────────
@@ -165,7 +165,7 @@ class _BookingHeader extends StatelessWidget {
     required this.tabController,
     required this.onBack,
   });
-  final _TabMeta meta;
+  final TabMeta meta;
   final int tabIndex;
   final TabController tabController;
   final VoidCallback onBack;
@@ -246,7 +246,7 @@ class _BookingHeader extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: BK.tabs[tabIndex].color.withOpacity(0.4),
+                      color: BK.tabs[tabIndex].color.withValues(alpha: 0.4),
                       blurRadius: 10,
                       offset: const Offset(0, 3),
                     ),
@@ -281,7 +281,7 @@ class _BookingHeader extends StatelessWidget {
 
 // ─── Train Tab ────────────────────────────────────────────────────────────────
 class _TrainTab extends StatefulWidget {
-  final _TabMeta meta;
+  final TabMeta meta;
   const _TrainTab({required this.meta});
   @override
   State<_TrainTab> createState() => _TrainTabState();
@@ -331,10 +331,13 @@ class _TrainTabState extends State<_TrainTab> {
       if (res.statusCode == 200) {
         final body = jsonDecode(res.body);
         List<dynamic> raw = [];
-        if (body['data'] is List)        raw = body['data'];
-        else if (body['result'] is List) raw = body['result'];
-        // ignore: unnecessary_cast
-        else if (body is List)           raw = body as List;
+        if (body['data'] is List) {
+          raw = body['data'];
+        } else if (body['result'] is List) {
+          raw = body['result'];
+        } else if (body is List) {
+          raw = body;
+        }
         final list = raw.map<Map<String, dynamic>>((s) {
           final name = (s['station_name'] ?? s['name'] ?? s['stationName'] ?? '').toString();
           final code = (s['station_code'] ?? s['code'] ?? s['stationCode'] ?? '').toString();
@@ -373,10 +376,13 @@ class _TrainTabState extends State<_TrainTab> {
       if (res.statusCode == 200) {
         final body = jsonDecode(res.body);
         List<dynamic> raw = [];
-        if (body['data'] is List)        raw = body['data'];
-        else if (body['result'] is List) raw = body['result'];
-        // ignore: unnecessary_cast
-        else if (body is List)           raw = body as List;
+        if (body['data'] is List) {
+          raw = body['data'];
+        } else if (body['result'] is List) {
+          raw = body['result'];
+        } else if (body is List) {
+          raw = body;
+        }
 
         setState(() {
           _trains = raw.map<Map<String, dynamic>>((t) => {
@@ -427,13 +433,15 @@ class _TrainTabState extends State<_TrainTab> {
       if (mounted) {
         _toast('Booking saved! ✓', const Color(0xFF00C9A7));
         await Future.delayed(const Duration(milliseconds: 500));
-        Navigator.of(context).pop({
-          'bookingConfirmed': true,
-          'booking': {
-            'title'   : train['name'],
-            'subtitle': '${_dateCtrl.text} • ${_paxCtrl.text} pax • ${_toCtrl.text}',
-          },
-        });
+        if (mounted) {
+          Navigator.of(context).pop({
+            'bookingConfirmed': true,
+            'booking': {
+              'title'   : train['name'],
+              'subtitle': '${_dateCtrl.text} • ${_paxCtrl.text} pax • ${_toCtrl.text}',
+            },
+          });
+        }
       }
     } catch (e) {
       _toast('Error: $e', Colors.redAccent);
@@ -458,7 +466,9 @@ class _TrainTabState extends State<_TrainTab> {
   @override
   void dispose() {
     _fromTimer?.cancel(); _toTimer?.cancel();
-    for (final c in [_fromCtrl, _toCtrl, _dateCtrl, _nameCtrl, _emailCtrl, _paxCtrl]) c.dispose();
+    for (final c in [_fromCtrl, _toCtrl, _dateCtrl, _nameCtrl, _emailCtrl, _paxCtrl]) {
+      c.dispose();
+    }
     super.dispose();
   }
 
@@ -478,7 +488,7 @@ class _TrainTabState extends State<_TrainTab> {
           // ── Journey card ──────────────────────────────────────────────────
           _DarkCard(
             child: Column(children: [
-              _Label('FROM'),
+              const _Label('FROM'),
               _StationField(
                 controller: _fromCtrl,
                 hint: 'Origin station',
@@ -508,7 +518,7 @@ class _TrainTabState extends State<_TrainTab> {
                 }),
               ),
 
-              _Label('TO'),
+              const _Label('TO'),
               _StationField(
                 controller: _toCtrl,
                 hint: 'Destination station',
@@ -553,16 +563,18 @@ class _TrainTabState extends State<_TrainTab> {
                       child: child!,
                     ),
                   );
-                  if (d != null) setState(() {
+                  if (d != null) {
+                    setState(() {
                     _date = d;
                     _dateCtrl.text = DateFormat('dd MMM yyyy').format(d);
                   });
+                  }
                 },
                 child: Row(children: [
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: color.withOpacity(0.15),
+                      color: color.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Icon(Icons.calendar_month_rounded, color: color, size: 18),
@@ -670,21 +682,21 @@ class _TrainTabState extends State<_TrainTab> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.15),
+                  color: color.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(Icons.date_range_rounded, color: color, size: 18),
               ),
               const SizedBox(width: 12),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text('Flexible dates', style: TextStyle(color: BK.textPri, fontWeight: FontWeight.w700, fontSize: 14)),
-                const SizedBox(height: 2),
-                const Text('Search ±1 day for best availability', style: TextStyle(color: BK.textMuted, fontSize: 11)),
+              const Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text('Flexible dates', style: TextStyle(color: BK.textPri, fontWeight: FontWeight.w700, fontSize: 14)),
+                SizedBox(height: 2),
+                Text('Search ±1 day for best availability', style: TextStyle(color: BK.textMuted, fontSize: 11)),
               ])),
               Switch(
                 value: _flexible,
                 onChanged: (v) => setState(() => _flexible = v),
-                activeColor: color,
+                activeThumbColor: color,
                 inactiveThumbColor: BK.textMuted,
                 inactiveTrackColor: BK.border,
               ),
@@ -724,9 +736,9 @@ class _TrainTabState extends State<_TrainTab> {
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: const Color(0xFFFF5C7A).withOpacity(0.08),
+                color: const Color(0xFFFF5C7A).withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: const Color(0xFFFF5C7A).withOpacity(0.25)),
+                border: Border.all(color: const Color(0xFFFF5C7A).withValues(alpha: 0.25)),
               ),
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const Icon(Icons.error_outline_rounded,
@@ -746,7 +758,7 @@ class _TrainTabState extends State<_TrainTab> {
               Text('${_trains.length} trains found',
                   style: const TextStyle(color: BK.textPri, fontWeight: FontWeight.w800, fontSize: 15)),
               const Spacer(),
-              Text('${_dateCtrl.text}',
+              Text(_dateCtrl.text,
                   style: const TextStyle(color: BK.textSec, fontSize: 12)),
             ]),
             const SizedBox(height: 12),
@@ -799,7 +811,7 @@ class _Provider {
 }
 
 class _ExternalTab extends StatefulWidget {
-  final _TabMeta meta;
+  final TabMeta meta;
   final String description;
   final String Function(String, String, String) buildUrl;
   final List<_Provider> providers;
@@ -831,7 +843,7 @@ class _ExternalTabState extends State<_ExternalTab> {
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: color.withOpacity(0.35),
+                color: color.withValues(alpha: 0.35),
                 blurRadius: 24,
                 offset: const Offset(0, 8),
               ),
@@ -841,7 +853,7 @@ class _ExternalTabState extends State<_ExternalTab> {
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Icon(widget.meta.icon, color: Colors.white, size: 26),
@@ -880,10 +892,12 @@ class _ExternalTabState extends State<_ExternalTab> {
                   child: child!,
                 ),
               );
-              if (d != null) setState(() {
+              if (d != null) {
+                setState(() {
                 _date = d;
                 _dateCtrl.text = DateFormat('dd MMM yyyy').format(d);
               });
+              }
             },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
@@ -937,15 +951,15 @@ class _ExternalTabState extends State<_ExternalTab> {
                 decoration: BoxDecoration(
                   color: BK.card,
                   borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: p.color.withOpacity(0.2)),
+                  border: Border.all(color: p.color.withValues(alpha: 0.2)),
                   boxShadow: [BoxShadow(
-                      color: p.color.withOpacity(0.08), blurRadius: 14, offset: const Offset(0, 4))],
+                      color: p.color.withValues(alpha: 0.08), blurRadius: 14, offset: const Offset(0, 4))],
                 ),
                 child: Row(children: [
                   Container(
                     width: 46, height: 46,
                     decoration: BoxDecoration(
-                      color: p.color.withOpacity(0.15),
+                      color: p.color.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(14),
                     ),
                     child: Icon(p.icon, color: p.color, size: 22),
@@ -960,7 +974,7 @@ class _ExternalTabState extends State<_ExternalTab> {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: p.color.withOpacity(0.15),
+                      color: p.color.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Icon(Icons.arrow_forward_ios_rounded, size: 12, color: p.color),
@@ -972,8 +986,8 @@ class _ExternalTabState extends State<_ExternalTab> {
         }),
 
         const SizedBox(height: 12),
-        Center(
-          child: Row(mainAxisSize: MainAxisSize.min, children: const [
+        const Center(
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
             Icon(Icons.lock_outline_rounded, size: 12, color: BK.textMuted),
             SizedBox(width: 6),
             Text("You'll be redirected to the provider's secure app or website.",
@@ -993,7 +1007,7 @@ class _TrainCard extends StatelessWidget {
     required this.onBook, required this.onIRCTC,
   });
   final Map<String, dynamic> train;
-  final _TabMeta meta;
+  final TabMeta meta;
   final int index;
   final bool isSaving;
   final String selectedClass;
@@ -1018,9 +1032,9 @@ class _TrainCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: BK.card,
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: color.withOpacity(0.18)),
+          border: Border.all(color: color.withValues(alpha: 0.18)),
           boxShadow: [
-            BoxShadow(color: color.withOpacity(0.08), blurRadius: 16, offset: const Offset(0, 6)),
+            BoxShadow(color: color.withValues(alpha: 0.08), blurRadius: 16, offset: const Offset(0, 6)),
           ],
         ),
         child: Column(children: [
@@ -1029,7 +1043,7 @@ class _TrainCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [color.withOpacity(0.18), color.withOpacity(0.04)],
+                colors: [color.withValues(alpha: 0.18), color.withValues(alpha: 0.04)],
                 begin: Alignment.centerLeft, end: Alignment.centerRight,
               ),
               borderRadius: const BorderRadius.vertical(top: Radius.circular(22)),
@@ -1043,7 +1057,7 @@ class _TrainCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.15),
+                  color: color.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text('#${train['number']}',
@@ -1161,7 +1175,7 @@ class _BookingSheet extends StatelessWidget {
   });
   final Map<String, dynamic> train;
   final String from, to, date, name, email, pax, quota, classKey;
-  final _TabMeta meta;
+  final TabMeta meta;
   final bool isSaving;
   final VoidCallback onConfirm, onIRCTC;
 
@@ -1310,9 +1324,9 @@ class _SwapDivider extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 12),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [color, color.withOpacity(0.7)]),
+            gradient: LinearGradient(colors: [color, color.withValues(alpha: 0.7)]),
             shape: BoxShape.circle,
-            boxShadow: [BoxShadow(color: color.withOpacity(0.35), blurRadius: 10, offset: const Offset(0, 3))],
+            boxShadow: [BoxShadow(color: color.withValues(alpha: 0.35), blurRadius: 10, offset: const Offset(0, 3))],
           ),
           child: const Icon(Icons.swap_vert_rounded, color: Colors.white, size: 18),
         ),
@@ -1380,7 +1394,7 @@ class _StationField extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(6),
                       decoration: BoxDecoration(
-                        color: dotColor.withOpacity(0.15),
+                        color: dotColor.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(Icons.train_outlined, size: 14, color: dotColor),
@@ -1460,7 +1474,7 @@ class _GlowButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: glowColor.withOpacity(isLoading ? 0.15 : 0.4),
+            color: glowColor.withValues(alpha: isLoading ? 0.15 : 0.4),
             blurRadius: 18,
             offset: const Offset(0, 6),
           ),
@@ -1494,7 +1508,7 @@ class _OutlineBtn extends StatelessWidget {
       height: 48,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: color.withOpacity(0.4), width: 1.5),
+        border: Border.all(color: color.withValues(alpha: 0.4), width: 1.5),
       ),
       child: Center(child: Row(mainAxisSize: MainAxisSize.min, children: [
         Icon(icon, color: color, size: 15),
@@ -1517,7 +1531,7 @@ class _CircleBtn extends StatelessWidget {
     child: Container(
       width: 30, height: 30,
       decoration: BoxDecoration(
-        color: color.withOpacity(0.15),
+        color: color.withValues(alpha: 0.15),
         shape: BoxShape.circle,
       ),
       child: Icon(icon, color: color, size: 16),
@@ -1534,7 +1548,7 @@ class _WhiteTag extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     decoration: BoxDecoration(
-      color: Colors.white.withOpacity(0.18),
+      color: Colors.white.withValues(alpha: 0.18),
       borderRadius: BorderRadius.circular(8),
     ),
     child: Row(mainAxisSize: MainAxisSize.min, children: [

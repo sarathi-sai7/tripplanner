@@ -191,9 +191,11 @@ class _TripBuilderScreenState extends State<TripBuilderScreen>
       if (mounted) {
         _showSnack('Trip saved successfully!', const Color(0xFF00C896));
         await Future.delayed(const Duration(milliseconds: 600));
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const MyTripsScreen()),
-        );
+        if (mounted) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const MyTripsScreen()),
+          );
+        }
       }
     } catch (e) {
       if (mounted) _showSnack('Error saving trip: $e', Colors.red);
@@ -339,7 +341,7 @@ class _TripBuilderScreenState extends State<TripBuilderScreen>
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: _primary.withOpacity(0.3),
+                    color: _primary.withValues(alpha: 0.3),
                     blurRadius: 20,
                     offset: const Offset(0, 8),
                   ),
@@ -369,7 +371,7 @@ class _TripBuilderScreenState extends State<TripBuilderScreen>
           const SizedBox(height: 32),
 
           // Trip name field
-          _FieldLabel(label: 'Trip Name'),
+          const _FieldLabel(label: 'Trip Name'),
           const SizedBox(height: 8),
           _StyledTextField(
             controller: _tripNameController,
@@ -380,7 +382,7 @@ class _TripBuilderScreenState extends State<TripBuilderScreen>
           const SizedBox(height: 20),
 
           // Notes field
-          _FieldLabel(label: 'Notes (optional)'),
+          const _FieldLabel(label: 'Notes (optional)'),
           const SizedBox(height: 8),
           _StyledTextField(
             controller: _notesController,
@@ -577,7 +579,7 @@ class _TripBuilderScreenState extends State<TripBuilderScreen>
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: _primary.withOpacity(0.3),
+                  color: _primary.withValues(alpha: 0.3),
                   blurRadius: 16,
                   offset: const Offset(0, 6),
                 ),
@@ -627,7 +629,7 @@ class _TripBuilderScreenState extends State<TripBuilderScreen>
                       icon: Icons.place_outlined,
                     ),
                     const SizedBox(width: 10),
-                    _SummaryChip(
+                    const _SummaryChip(
                       label: 'Custom Trip',
                       icon: Icons.auto_awesome,
                     ),
@@ -638,7 +640,7 @@ class _TripBuilderScreenState extends State<TripBuilderScreen>
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.15),
+                      color: Colors.white.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
@@ -833,7 +835,7 @@ class _StepIndicator extends StatelessWidget {
                     shape: BoxShape.circle,
                     border: isActive
                         ? Border.all(
-                            color: const Color(0xFF4F5BD5).withOpacity(0.3),
+                            color: const Color(0xFF4F5BD5).withValues(alpha: 0.3),
                             width: 4)
                         : null,
                   ),
@@ -904,8 +906,8 @@ class _PlaceTile extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: isSelected
-                ? color.withOpacity(0.12)
-                : Colors.black.withOpacity(0.04),
+                ? color.withValues(alpha: 0.12)
+                : Colors.black.withValues(alpha: 0.04),
             blurRadius: isSelected ? 12 : 5,
             offset: const Offset(0, 2),
           ),
@@ -929,7 +931,7 @@ class _PlaceTile extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: isSelected
                         ? color
-                        : color.withOpacity(0.10),
+                        : color.withValues(alpha: 0.10),
                     borderRadius: BorderRadius.circular(13),
                   ),
                   child: Center(
@@ -970,9 +972,9 @@ class _PlaceTile extends StatelessWidget {
                           key: const ValueKey('check'),
                           color: color,
                           size: 22)
-                      : Icon(Icons.add_circle_outline_rounded,
-                          key: const ValueKey('add'),
-                          color: const Color(0xFFCCCCDD),
+                      : const Icon(Icons.add_circle_outline_rounded,
+                          key: ValueKey('add'),
+                          color: Color(0xFFCCCCDD),
                           size: 22),
                 ),
               ],
@@ -1011,7 +1013,7 @@ class _ItineraryRow extends StatelessWidget {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.12),
+                color: color.withValues(alpha: 0.12),
                 shape: BoxShape.circle,
               ),
               child: Center(
@@ -1031,7 +1033,7 @@ class _ItineraryRow extends StatelessWidget {
                 height: 28,
                 margin: const EdgeInsets.symmetric(vertical: 2),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.2),
+                  color: color.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(1),
                 ),
               ),
@@ -1053,7 +1055,7 @@ class _ItineraryRow extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(top: 8),
-          child: Icon(icon, size: 18, color: color.withOpacity(0.6)),
+          child: Icon(icon, size: 18, color: color.withValues(alpha: 0.6)),
         ),
       ],
     );
@@ -1155,7 +1157,7 @@ class _GradientButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF4F5BD5).withOpacity(0.35),
+              color: const Color(0xFF4F5BD5).withValues(alpha: 0.35),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -1206,9 +1208,9 @@ class _InfoChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withOpacity(0.2)),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -1240,7 +1242,7 @@ class _SummaryChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
+        color: Colors.white.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -1274,8 +1276,8 @@ class _WarningBanner extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.red.withOpacity(0.06),
-        border: Border.all(color: Colors.red.withOpacity(0.2)),
+        color: Colors.red.withValues(alpha: 0.06),
+        border: Border.all(color: Colors.red.withValues(alpha: 0.2)),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -1321,8 +1323,8 @@ class _EmptyPlaces extends StatelessWidget {
           Container(
             width: 72,
             height: 72,
-            decoration: BoxDecoration(
-              color: const Color(0xFFF0F4FF),
+            decoration: const BoxDecoration(
+              color: Color(0xFFF0F4FF),
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.search_off_rounded,
@@ -1362,12 +1364,12 @@ class _EmptyItinerary extends StatelessWidget {
           color: const Color(0xFFF5F6FF),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: const Color(0xFF4F5BD5).withOpacity(0.2),
+            color: const Color(0xFF4F5BD5).withValues(alpha: 0.2),
             style: BorderStyle.solid,
           ),
         ),
-        child: Row(
-          children: const [
+        child: const Row(
+          children: [
             Icon(Icons.add_location_alt_outlined,
                 color: Color(0xFF4F5BD5), size: 24),
             SizedBox(width: 14),

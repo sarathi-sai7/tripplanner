@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/foundation.dart';
 import 'package:csv/csv.dart';
 import 'models/tourist_place.dart';
 
@@ -28,7 +29,7 @@ class TouristPlaceLoader {
 
       return places;
     } catch (e) {
-      print('Error loading CSV: $e');
+      debugPrint('Error loading CSV: $e');
       return [];
     }
   }

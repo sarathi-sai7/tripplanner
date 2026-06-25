@@ -204,7 +204,7 @@ class _MemoriesScreenState
 
                 await _loadAlbums();
 
-                if (mounted) {
+                if (mounted && ctx.mounted) {
                   Navigator.pop(
                       ctx);
 
@@ -371,8 +371,8 @@ class _MemoriesScreenState
                         BoxShadow(
                           color: Colors
                               .black
-                              .withOpacity(
-                                  0.05),
+                              .withValues(
+                                  alpha: 0.05),
                           blurRadius:
                               12,
                         ),
@@ -421,8 +421,8 @@ class _MemoriesScreenState
                     BoxShadow(
                       color: Colors
                           .black
-                          .withOpacity(
-                              0.04),
+                          .withValues(
+                              alpha: 0.04),
                       blurRadius:
                           14,
                     ),
@@ -495,8 +495,8 @@ class _MemoriesScreenState
                                     BoxDecoration(
                                   color: Colors
                                       .teal
-                                      .withOpacity(
-                                          0.08),
+                                      .withValues(
+                                          alpha: 0.08),
                                   shape:
                                       BoxShape
                                           .circle,
@@ -667,8 +667,8 @@ class _MemoriesScreenState
                                     BoxShadow(
                                       color: Colors
                                           .black
-                                          .withOpacity(
-                                              0.05),
+                                          .withValues(
+                                              alpha: 0.05),
                                       blurRadius:
                                           18,
                                       offset:
@@ -749,8 +749,8 @@ class _MemoriesScreenState
                                                   BoxDecoration(
                                                 color: Colors
                                                     .white
-                                                    .withOpacity(
-                                                        0.92),
+                                                    .withValues(
+                                                        alpha: 0.92),
                                                 shape:
                                                     BoxShape.circle,
                                               ),
@@ -810,8 +810,8 @@ class _MemoriesScreenState
                                                     BoxDecoration(
                                                   color: Colors
                                                       .teal
-                                                      .withOpacity(
-                                                          0.08),
+                                                      .withValues(
+                                                          alpha: 0.08),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10),

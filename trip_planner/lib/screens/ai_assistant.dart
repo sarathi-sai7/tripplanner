@@ -199,10 +199,10 @@ class _AIAssistantState extends State<AIAssistant>
             width: 42,
             height: 42,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               shape: BoxShape.circle,
               border: Border.all(
-                  color: Colors.white.withOpacity(0.4), width: 1.5),
+                  color: Colors.white.withValues(alpha: 0.4), width: 1.5),
             ),
             child: const Icon(Icons.travel_explore,
                 color: Colors.white, size: 22),
@@ -276,7 +276,7 @@ class _AIAssistantState extends State<AIAssistant>
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.teal.withOpacity(0.3),
+                  color: Colors.teal.withValues(alpha: 0.3),
                   blurRadius: 20,
                   offset: const Offset(0, 8),
                 ),
@@ -325,10 +325,10 @@ class _AIAssistantState extends State<AIAssistant>
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                              color: Colors.teal.withOpacity(0.3)),
+                              color: Colors.teal.withValues(alpha: 0.3)),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.04),
+                              color: Colors.black.withValues(alpha: 0.04),
                               blurRadius: 6,
                               offset: const Offset(0, 2),
                             ),
@@ -403,7 +403,7 @@ class _AIAssistantState extends State<AIAssistant>
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.07),
+                        color: Colors.black.withValues(alpha: 0.07),
                         blurRadius: 6,
                         offset: const Offset(0, 2),
                       ),
@@ -461,7 +461,7 @@ class _AIAssistantState extends State<AIAssistant>
               borderRadius: BorderRadius.circular(18),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.06),
+                  color: Colors.black.withValues(alpha: 0.06),
                   blurRadius: 6,
                   offset: const Offset(0, 2),
                 ),
@@ -527,7 +527,7 @@ class _AIAssistantState extends State<AIAssistant>
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.teal.withOpacity(0.35),
+                    color: Colors.teal.withValues(alpha: 0.35),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),

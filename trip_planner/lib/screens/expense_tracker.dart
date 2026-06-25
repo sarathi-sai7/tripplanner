@@ -223,8 +223,8 @@ class _ExpenseScreenState extends State<ExpenseScreen>
   double _total(List<QueryDocumentSnapshot> docs) =>
       docs.fold(
         0,
-        (sum, doc) =>
-            sum +
+        (acc, doc) =>
+            acc +
             (double.tryParse(
                     (doc.data()
                             as Map<String, dynamic>)['amount']
@@ -236,13 +236,13 @@ class _ExpenseScreenState extends State<ExpenseScreen>
   Widget build(BuildContext context) {
     // LOGIN CHECK
     if (_currentUser == null) {
-      return Scaffold(
-        backgroundColor: const Color(0xFFF5F7FA),
+      return const Scaffold(
+        backgroundColor: Color(0xFFF5F7FA),
         body: Center(
           child: Column(
             mainAxisAlignment:
                 MainAxisAlignment.center,
-            children: const [
+            children: [
               Icon(
                 Icons.lock_outline,
                 size: 70,
@@ -360,14 +360,14 @@ class _ExpenseScreenState extends State<ExpenseScreen>
                               decoration:
                                   BoxDecoration(
                                 color: Colors.white
-                                    .withOpacity(0.18),
+                                    .withValues(alpha: 0.18),
                                 borderRadius:
                                     BorderRadius
                                         .circular(12),
                                 border: Border.all(
                                   color: Colors.white
-                                      .withOpacity(
-                                          0.3),
+                                      .withValues(
+                                          alpha: 0.3),
                                 ),
                               ),
 
@@ -464,8 +464,8 @@ class _ExpenseScreenState extends State<ExpenseScreen>
                                 decoration:
                                     BoxDecoration(
                                   color: color
-                                      .withOpacity(
-                                          0.12),
+                                      .withValues(
+                                          alpha: 0.12),
                                   borderRadius:
                                       BorderRadius
                                           .circular(
@@ -529,7 +529,7 @@ class _ExpenseScreenState extends State<ExpenseScreen>
                           decoration:
                               BoxDecoration(
                             color: Colors.teal
-                                .withOpacity(0.08),
+                                .withValues(alpha: 0.08),
                             shape: BoxShape.circle,
                           ),
 
@@ -642,8 +642,8 @@ class _ExpenseScreenState extends State<ExpenseScreen>
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black
-                                  .withOpacity(
-                                      0.05),
+                                  .withValues(
+                                      alpha: 0.05),
                               blurRadius: 8,
                               offset:
                                   const Offset(
@@ -667,8 +667,8 @@ class _ExpenseScreenState extends State<ExpenseScreen>
                             decoration:
                                 BoxDecoration(
                               color: color
-                                  .withOpacity(
-                                      0.12),
+                                  .withValues(
+                                      alpha: 0.12),
                               borderRadius:
                                   BorderRadius
                                       .circular(
@@ -945,8 +945,8 @@ class _AddExpenseSheetState
                         color: selected
                             ? color
                             : color
-                                .withOpacity(
-                                    0.1),
+                                .withValues(
+                                    alpha: 0.1),
 
                         borderRadius:
                             BorderRadius

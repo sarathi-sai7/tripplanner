@@ -223,8 +223,8 @@ class _FavoritesScreenState
                         BoxShadow(
                           color: Colors
                               .black
-                              .withOpacity(
-                                  0.05),
+                              .withValues(
+                                  alpha: 0.05),
 
                           blurRadius:
                               12,
@@ -271,8 +271,8 @@ class _FavoritesScreenState
                     BoxShadow(
                       color: Colors
                           .black
-                          .withOpacity(
-                              0.04),
+                          .withValues(
+                              alpha: 0.04),
 
                       blurRadius:
                           14,
@@ -358,8 +358,8 @@ class _FavoritesScreenState
                                     BoxDecoration(
                                   color: Colors
                                       .red
-                                      .withOpacity(
-                                          0.08),
+                                      .withValues(
+                                          alpha: 0.08),
 
                                   shape:
                                       BoxShape
@@ -549,8 +549,8 @@ class _FavoritesScreenState
                                     BoxShadow(
                                       color: Colors
                                           .black
-                                          .withOpacity(
-                                              0.05),
+                                          .withValues(
+                                              alpha: 0.05),
 
                                       blurRadius:
                                           18,
@@ -654,8 +654,8 @@ class _FavoritesScreenState
                                                     BoxDecoration(
                                                   color: Colors
                                                       .white
-                                                      .withOpacity(
-                                                          0.92),
+                                                      .withValues(
+                                                          alpha: 0.92),
 
                                                   shape:
                                                       BoxShape.circle,
@@ -728,8 +728,8 @@ class _FavoritesScreenState
                                                     BoxDecoration(
                                                   color: Colors
                                                       .teal
-                                                      .withOpacity(
-                                                          0.08),
+                                                      .withValues(
+                                                          alpha: 0.08),
 
                                                   borderRadius:
                                                       BorderRadius.circular(

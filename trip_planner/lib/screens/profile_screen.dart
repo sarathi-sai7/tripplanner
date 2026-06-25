@@ -163,8 +163,8 @@ class _ProfileScreenState
       ScaffoldMessenger.of(context)
           .showSnackBar(
         SnackBar(
-          content: Row(
-            children: const [
+          content: const Row(
+            children: [
               Icon(
                 Icons.check_circle,
                 color:
@@ -225,7 +225,7 @@ class _ProfileScreenState
         decoration:
             BoxDecoration(
           color: Colors.teal
-              .withOpacity(0.1),
+              .withValues(alpha: 0.1),
 
           borderRadius:
               BorderRadius
@@ -372,8 +372,8 @@ class _ProfileScreenState
                                   Border.all(
                                 color: Colors
                                     .white
-                                    .withOpacity(
-                                        0.4),
+                                    .withValues(
+                                        alpha: 0.4),
                                 width:
                                     3,
                               ),
@@ -382,8 +382,8 @@ class _ProfileScreenState
                                 BoxShadow(
                                   color: Colors
                                       .black
-                                      .withOpacity(
-                                          0.15),
+                                      .withValues(
+                                          alpha: 0.15),
                                   blurRadius:
                                       18,
                                 ),
@@ -438,8 +438,8 @@ class _ProfileScreenState
                                     BoxShadow(
                                       color: Colors
                                           .black
-                                          .withOpacity(
-                                              0.1),
+                                          .withValues(
+                                              alpha: 0.1),
                                       blurRadius:
                                           12,
                                     ),
@@ -499,8 +499,8 @@ class _ProfileScreenState
                             BoxDecoration(
                           color: Colors
                               .white
-                              .withOpacity(
-                                  0.15),
+                              .withValues(
+                                  alpha: 0.15),
 
                           borderRadius:
                               BorderRadius
@@ -515,8 +515,8 @@ class _ProfileScreenState
                               TextStyle(
                             color: Colors
                                 .white
-                                .withOpacity(
-                                    0.95),
+                                .withValues(
+                                    alpha: 0.95),
 
                             fontSize:
                                 13,
@@ -662,7 +662,7 @@ class _ProfileScreenState
                           // GENDER
                           DropdownButtonFormField<
                               String>(
-                            value:
+                            initialValue:
                                 _gender,
 
                             icon:
@@ -763,12 +763,12 @@ class _ProfileScreenState
                           ),
                         ),
 
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment:
                               MainAxisAlignment
                                   .center,
 
-                          children: const [
+                          children: [
                             Icon(
                               Icons.save,
                               color: Colors
@@ -831,8 +831,8 @@ class _ProfileScreenState
         boxShadow: [
           BoxShadow(
             color: Colors.black
-                .withOpacity(
-                    0.05),
+                .withValues(
+                    alpha: 0.05),
 
             blurRadius: 24,
 

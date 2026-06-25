@@ -220,8 +220,8 @@ class _LocationScreenState
               BoxDecoration(
             color: selected
                 ? Colors.teal
-                    .withOpacity(
-                        0.08)
+                    .withValues(
+                        alpha: 0.08)
                 : Colors.white,
 
             borderRadius:
@@ -333,9 +333,9 @@ class _LocationScreenState
 
     ScaffoldMessenger.of(context)
         .showSnackBar(
-      SnackBar(
+      const SnackBar(
         content:
-            const Text(
+            Text(
           "All markers cleared",
         ),
 
@@ -427,6 +427,7 @@ class _LocationScreenState
       _isSearching = false;
     });
 
+    if (!mounted) return;
     if (position != null) {
 
       _mapController.animateCamera(
@@ -590,8 +591,8 @@ class _LocationScreenState
                   BoxShadow(
                     color: Colors
                         .black
-                        .withOpacity(
-                            0.08),
+                        .withValues(
+                            alpha: 0.08),
 
                     blurRadius:
                         20,

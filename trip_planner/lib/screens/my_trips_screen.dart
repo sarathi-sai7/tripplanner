@@ -53,7 +53,7 @@ class _MyTripsScreenState extends State<MyTripsScreen>
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.1),
+                color: Colors.red.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.delete_outline_rounded,
@@ -330,12 +330,12 @@ class _TripCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: accentColor.withOpacity(0.08),
+            color: accentColor.withValues(alpha: 0.08),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -357,7 +357,7 @@ class _TripCard extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       accentColor,
-                      accentColor.withOpacity(0.75),
+                      accentColor.withValues(alpha: 0.75),
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -371,7 +371,7 @@ class _TripCard extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Icon(accentIcon,
@@ -450,10 +450,10 @@ class _TripCard extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 5),
                             decoration: BoxDecoration(
-                              color: accentColor.withOpacity(0.08),
+                              color: accentColor.withValues(alpha: 0.08),
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                  color: accentColor.withOpacity(0.2)),
+                                  color: accentColor.withValues(alpha: 0.2)),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -561,8 +561,8 @@ class _HeaderAction extends StatelessWidget {
           height: 34,
           decoration: BoxDecoration(
             color: isDestructive
-                ? Colors.red.withOpacity(0.18)
-                : Colors.white.withOpacity(0.2),
+                ? Colors.red.withValues(alpha: 0.18)
+                : Colors.white.withValues(alpha: 0.2),
             shape: BoxShape.circle,
           ),
           child: Icon(icon,
@@ -777,7 +777,7 @@ class _TripDetailSheet extends StatelessWidget {
                                     width: 36,
                                     height: 36,
                                     decoration: BoxDecoration(
-                                      color: color.withOpacity(0.12),
+                                      color: color.withValues(alpha: 0.12),
                                       shape: BoxShape.circle,
                                     ),
                                     child: Center(
@@ -798,7 +798,7 @@ class _TripDetailSheet extends StatelessWidget {
                                       margin: const EdgeInsets.symmetric(
                                           vertical: 2),
                                       decoration: BoxDecoration(
-                                        color: color.withOpacity(0.2),
+                                        color: color.withValues(alpha: 0.2),
                                         borderRadius:
                                             BorderRadius.circular(1),
                                       ),
@@ -825,7 +825,7 @@ class _TripDetailSheet extends StatelessWidget {
                                       Icon(icon,
                                           size: 18,
                                           color:
-                                              color.withOpacity(0.6)),
+                                              color.withValues(alpha: 0.6)),
                                     ],
                                   ),
                                 ),
@@ -846,7 +846,7 @@ class _TripDetailSheet extends StatelessWidget {
                               foregroundColor: Colors.redAccent,
                               side: BorderSide(
                                   color:
-                                      Colors.redAccent.withOpacity(0.4)),
+                                      Colors.redAccent.withValues(alpha: 0.4)),
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.circular(14)),
@@ -876,7 +876,7 @@ class _TripDetailSheet extends StatelessWidget {
                               borderRadius: BorderRadius.circular(14),
                               boxShadow: [
                                 BoxShadow(
-                                  color: _primary.withOpacity(0.3),
+                                  color: _primary.withValues(alpha: 0.3),
                                   blurRadius: 10,
                                   offset: const Offset(0, 4),
                                 ),
@@ -949,7 +949,7 @@ class _SummaryChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
+        color: Colors.white.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(

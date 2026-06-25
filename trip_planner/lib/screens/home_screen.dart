@@ -237,7 +237,7 @@ class _HomeScreenState extends State<HomeScreen>
       ],
     );
 
-    if (!mounted) return;
+    if (!ctx.mounted) return;
 
     switch (result) {
       case 'Logout':
@@ -342,9 +342,9 @@ class _AppBar extends StatelessWidget {
               gradient: AppColors.gradient,
               borderRadius: BorderRadius.circular(14),
             ),
-            child: Row(
+            child: const Row(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 Icon(Icons.flight_rounded, color: Colors.white, size: 18),
                 SizedBox(width: 6),
                 Text(
@@ -508,7 +508,7 @@ class _AvatarState extends State<_Avatar> {
         boxShadow: [
           BoxShadow(
             color: AppColors.primary
-                .withOpacity(0.3),
+                .withValues(alpha: 0.3),
 
             blurRadius: 10,
             offset: const Offset(0, 3),
@@ -569,10 +569,10 @@ class _HomeBody extends StatelessWidget {
           const SizedBox(height: 30),
 
           // Quick access
-          _SectionHeader(
+          const _SectionHeader(
             title: "Quick Access",
             trailing: null,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
           ),
 
           const SizedBox(height: 14),
@@ -642,10 +642,10 @@ class _HomeBody extends StatelessWidget {
           const SizedBox(height: 30),
 
           // Popular destinations
-          _SectionHeader(
+          const _SectionHeader(
             title: "Popular Destinations",
             trailing: "See all",
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
           ),
 
           const SizedBox(height: 14),
@@ -736,8 +736,8 @@ class _HeroBanner extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.08),
-                    Colors.black.withOpacity(0.65),
+                    Colors.black.withValues(alpha: 0.08),
+                    Colors.black.withValues(alpha: 0.65),
                   ],
                   stops: const [0.3, 1.0],
                 ),
@@ -755,10 +755,10 @@ class _HeroBanner extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 5),
                       decoration: BoxDecoration(
-                        color: AppColors.accent.withOpacity(0.2),
+                        color: AppColors.accent.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                            color: AppColors.accent.withOpacity(0.5),
+                            color: AppColors.accent.withValues(alpha: 0.5),
                             width: 1),
                       ),
                       child: const Text(
@@ -789,7 +789,7 @@ class _HeroBanner extends StatelessWidget {
                     Text(
                       "${latestBooking!['subtitle']}",
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.85),
+                        color: Colors.white.withValues(alpha: 0.85),
                         fontSize: 13,
                       ),
                     ),
@@ -803,7 +803,7 @@ class _HeroBanner extends StatelessWidget {
                         Text(
                           "Kerala, India  •  Trending now",
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.85),
+                            color: Colors.white.withValues(alpha: 0.85),
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
@@ -884,9 +884,9 @@ class _QuickCard extends StatelessWidget {
               width: 60,
               height: 60,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: color.withOpacity(0.15), width: 1.5),
+                border: Border.all(color: color.withValues(alpha: 0.15), width: 1.5),
               ),
               child: Icon(icon, color: color, size: 26),
             ),
@@ -941,7 +941,7 @@ class _DestCard extends StatelessWidget {
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.transparent,
-                    Colors.black.withOpacity(0.72),
+                    Colors.black.withValues(alpha: 0.72),
                   ],
                   stops: const [0.45, 1.0],
                 ),
@@ -958,7 +958,7 @@ class _DestCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 7, vertical: 3),
                     decoration: BoxDecoration(
-                      color: AppColors.accent.withOpacity(0.25),
+                      color: AppColors.accent.withValues(alpha: 0.25),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -991,7 +991,7 @@ class _DestCard extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Icon(
@@ -1025,7 +1025,7 @@ class _AIAssistantBanner extends StatelessWidget {
           borderRadius: BorderRadius.circular(22),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(0.3),
+              color: AppColors.primary.withValues(alpha: 0.3),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
@@ -1036,7 +1036,7 @@ class _AIAssistantBanner extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.15),
+                color: Colors.white.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: const Icon(
@@ -1062,7 +1062,7 @@ class _AIAssistantBanner extends StatelessWidget {
                   Text(
                     "Ask me anything about your next trip",
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.white.withValues(alpha: 0.8),
                       fontSize: 12.5,
                     ),
                   ),
@@ -1072,7 +1072,7 @@ class _AIAssistantBanner extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Icon(
@@ -1135,12 +1135,12 @@ class _Footer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 14),
-          Row(
+          const Row(
             children: [
-              const Icon(Icons.email_rounded,
+              Icon(Icons.email_rounded,
                   size: 15, color: AppColors.primary),
-              const SizedBox(width: 8),
-              const Text(
+              SizedBox(width: 8),
+              Text(
                 "support@travelguide.com",
                 style: TextStyle(
                   fontSize: 13,
@@ -1187,7 +1187,7 @@ class _BottomNav extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 20,
             offset: const Offset(0, -4),
           ),
@@ -1211,7 +1211,7 @@ class _BottomNav extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 color: isSelected
-                    ? AppColors.primary.withOpacity(0.1)
+                    ? AppColors.primary.withValues(alpha: 0.1)
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(14),
               ),
@@ -1298,7 +1298,7 @@ class _ProfileMenuCardState
         boxShadow: [
           BoxShadow(
             color: Colors.black
-                .withOpacity(0.1),
+                .withValues(alpha: 0.1),
 
             blurRadius: 24,
 
@@ -1349,8 +1349,8 @@ class _ProfileMenuCardState
                         Border.all(
                       color: Colors
                           .white
-                          .withOpacity(
-                              0.5),
+                          .withValues(
+                              alpha: 0.5),
 
                       width: 2,
                     ),
@@ -1414,8 +1414,8 @@ class _ProfileMenuCardState
                             TextStyle(
                           color: Colors
                               .white
-                              .withOpacity(
-                                  0.85),
+                              .withValues(
+                                  alpha: 0.85),
 
                           fontSize:
                               11.5,
@@ -1532,8 +1532,8 @@ class _ProfileMenuCardState
                   decoration:
                       BoxDecoration(
                     color: color
-                        .withOpacity(
-                            0.1),
+                        .withValues(
+                            alpha: 0.1),
 
                     borderRadius:
                         BorderRadius
@@ -1572,7 +1572,7 @@ class _ProfileMenuCardState
                   ),
                 ),
 
-                Icon(
+                const Icon(
                   Icons
                       .chevron_right_rounded,
 

@@ -452,7 +452,7 @@ class _Card extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.grey.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, 8),
             )
@@ -495,8 +495,8 @@ class _ErrorBanner extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         margin: const EdgeInsets.only(bottom: 14),
         decoration: BoxDecoration(
-          color: Colors.red.withOpacity(0.08),
-          border: Border.all(color: Colors.red.withOpacity(0.3)),
+          color: Colors.red.withValues(alpha: 0.08),
+          border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(

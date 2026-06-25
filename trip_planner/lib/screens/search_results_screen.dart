@@ -307,7 +307,7 @@ class _PlaceSearchScreenState extends State<PlaceSearchScreen> {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: _primary.withOpacity(0.35),
+                color: _primary.withValues(alpha: 0.35),
                 blurRadius: 14,
                 offset: const Offset(0, 5),
               ),
@@ -320,7 +320,7 @@ class _PlaceSearchScreenState extends State<PlaceSearchScreen> {
                 width: 28,
                 height: 28,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   shape: BoxShape.circle,
                 ),
                 child: Center(
@@ -392,8 +392,8 @@ class _PlaceCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: isSelected
-                ? color.withOpacity(0.12)
-                : Colors.black.withOpacity(0.04),
+                ? color.withValues(alpha: 0.12)
+                : Colors.black.withValues(alpha: 0.04),
             blurRadius: isSelected ? 12 : 5,
             offset: const Offset(0, 2),
           ),
@@ -421,7 +421,7 @@ class _PlaceCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: isSelected
                           ? color
-                          : color.withOpacity(0.10),
+                          : color.withValues(alpha: 0.10),
                       borderRadius: BorderRadius.circular(13),
                     ),
                     child: Center(
@@ -561,7 +561,7 @@ class _IdleState extends StatelessWidget {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF4F5BD5).withOpacity(0.3),
+                      color: const Color(0xFF4F5BD5).withValues(alpha: 0.3),
                       blurRadius: 16,
                       offset: const Offset(0, 6),
                     ),
@@ -680,16 +680,16 @@ class _StatCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.07),
+          color: color.withValues(alpha: 0.07),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: color.withOpacity(0.15)),
+          border: Border.all(color: color.withValues(alpha: 0.15)),
         ),
         child: Row(
           children: [
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.12),
+                color: color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(icon, size: 18, color: color),
@@ -884,7 +884,7 @@ class _InfoRow extends StatelessWidget {
           width: 36,
           height: 36,
           decoration: BoxDecoration(
-            color: iconColor.withOpacity(0.1),
+            color: iconColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Icon(icon, size: 18, color: iconColor),
