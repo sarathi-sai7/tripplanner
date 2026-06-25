@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // ─── API config ──────────────────────────────────────────────────────────────
-const String _kRapidApiKey  = '2b866f6e62mshb3e0cd9508051a3p193b5ajsn410592726911';
+String get _kRapidApiKey => dotenv.env['RAPID_API_KEY'] ?? '';
 const String _kRapidApiHost = 'irctc1.p.rapidapi.com';
 
 // ─── Design tokens ───────────────────────────────────────────────────────────
