@@ -16,6 +16,7 @@ import 'profile_screen.dart';
 import 'location_screen.dart';
 import 'expense_tracker.dart';
 import 'ai_assistant.dart';
+import 'settings_screen.dart';
 
 // ─── Design tokens ───────────────────────────────────────────────────────────
 
@@ -257,6 +258,9 @@ class _HomeScreenState extends State<HomeScreen>
         break;
       case 'Assistant':
         Navigator.push(ctx, _fadeRoute(const AIAssistant()));
+        break;
+      case 'Settings':
+        Navigator.push(ctx, _fadeRoute(SettingsScreen(email: email)));
         break;
     }
   }

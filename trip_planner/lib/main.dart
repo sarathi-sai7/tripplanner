@@ -14,6 +14,7 @@ import 'screens/login_screen.dart';
 // new screens
 import 'screens/expense_tracker.dart';
 import 'screens/ai_assistant.dart';
+import 'screens/settings_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -86,6 +87,14 @@ class TripPlannerApp extends StatelessWidget {
           case '/ai':
             return MaterialPageRoute(
               builder: (_) => const AIAssistant(),
+            );
+
+          // ⚙️ NEW ROUTE - Settings Screen
+          case '/settings':
+            final args = settings.arguments as Map<String, dynamic>? ?? {};
+            final email = args['email'] as String? ?? '';
+            return MaterialPageRoute(
+              builder: (_) => SettingsScreen(email: email),
             );
 
           default:
