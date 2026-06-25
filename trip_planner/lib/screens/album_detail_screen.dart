@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'models.dart';
-import 'album_storage.dart';
+import '../models/album_memory.dart';
+import '../services/album_storage.dart';
 import 'login_screen.dart';
-import 'favorites_storage.dart';
+import '../services/favorites_storage.dart';
 
 class AlbumDetailScreen extends StatefulWidget {
   final Album album;

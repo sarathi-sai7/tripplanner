@@ -4,8 +4,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'favorites_storage.dart';
-import 'models.dart';
+import '../services/favorites_storage.dart';
+import '../models/album_memory.dart';
 import 'album_detail_screen.dart';
 
 class FavoritesScreen extends StatefulWidget {

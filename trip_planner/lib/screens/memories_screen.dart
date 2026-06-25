@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'album_detail_screen.dart';
-import 'models.dart';
-import 'album_storage.dart';
-import 'favorites_storage.dart';
+import '../models/album_memory.dart';
+import '../services/album_storage.dart';
+import '../services/favorites_storage.dart';
 
 class MemoriesScreen extends StatefulWidget {
   const MemoriesScreen({super.key});

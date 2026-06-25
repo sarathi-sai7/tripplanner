@@ -2,7 +2,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'models.dart';
+import 'package:trip_planner/models/album_memory.dart';
 
 class AlbumStorage {
   // Each user gets their own key: "albums_uid123abc"
