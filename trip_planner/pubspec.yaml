@@ -1,0 +1,56 @@
+name: trip_planner
+description: A Trip Planner Flutter app
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # CSV parsing for tourist places
+  csv: ^5.1.1
+
+  # Firebase
+  firebase_core: ^2.25.0
+  cloud_firestore: ^4.15.0
+  firebase_auth: ^4.17.0
+
+  # Media & Storage
+  image_picker: ^1.0.7
+  shared_preferences: ^2.2.2
+  path_provider: ^2.1.5
+
+  # Google
+  google_sign_in: ^6.2.1
+  google_maps_flutter: ^2.6.0
+
+  # Networking (Gemini AI assistant)
+  http: ^1.2.1
+
+  # Utilities
+  intl: ^0.18.1
+  url_launcher: ^6.2.5
+
+  # Location (for LocationScreen)
+  geolocator: ^11.0.0
+
+  # Secure API key management
+  flutter_dotenv: ^5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - .env
+    - assets/
+    
